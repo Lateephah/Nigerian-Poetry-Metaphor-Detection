@@ -182,7 +182,7 @@ The unlabeled dataset contained 14,994 literary excerpts. To make the data usefu
   * noun phrase extraction
   * metaphorical pair detection
     
-![Unlabelled Head](images/unlabelled_head.PNG)
+![Unlabelled Head](images/Unlabelled_head.PNG)
 
 ---
 

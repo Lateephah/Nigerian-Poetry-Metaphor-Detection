@@ -127,11 +127,7 @@ The following text columns were individually preprocessed:
 After preprocessing, all features were concatenated into a single feature column:
 
 ```python
-Concatenated_Column =
-Preprocessed_Excerpt +
-Preprocessed_HPSM +
-Preprocessed_LPSM +
-Preprocessed_Concepts
+Concatenated_Column = Preprocessed_Excerpt + Preprocessed_HPSM + Preprocessed_LPSM + Preprocessed_Concepts
 ```
 
 This allowed the model to learn from:

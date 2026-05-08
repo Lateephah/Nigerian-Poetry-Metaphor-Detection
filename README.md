@@ -189,9 +189,7 @@ This enrichment process allowed the unlabeled data to become structurally simila
 
 ### Suggested Image Placement
 
-```md
 ![Unlabelled Dataset Head](images/unlabelled_head.png)
-```
 
 ### Image Explanation
 

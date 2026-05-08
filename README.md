@@ -58,7 +58,7 @@ The dataset is balanced, which helps reduce model bias during training.
 
 # Project Workflow
 
-# Step 1 — Import Libraries
+# Step 1: mport Libraries
 
 The project begins by importing NLP, machine learning, and visualization libraries such as:
 
@@ -79,7 +79,7 @@ These libraries were used for:
 
 ---
 
-# Step 2 — Load spaCy Language Model
+# Step 2: Load spaCy Language Model
 
 The `en_core_web_lg` spaCy model was downloaded and loaded.
 
@@ -95,7 +95,7 @@ These embeddings became the foundation for semantic understanding in the project
 
 ---
 
-# Step 3 — Text Preprocessing
+# Step 3: Text Preprocessing
 
 A custom preprocessing pipeline was created to:
 
@@ -115,7 +115,7 @@ This preprocessing helps standardize textual data before vectorization.
 
 ---
 
-# Step 4 — Feature Engineering
+# Step 4: Feature Engineering
 
 The following text columns were individually preprocessed:
 
@@ -140,7 +140,7 @@ instead of relying only on raw text.
 
 ---
 
-# Step 5 — Word Embedding Generation
+# Step 5: Word Embedding Generation
 
 Each concatenated text was transformed into a numerical vector using spaCy embeddings:
 
@@ -152,13 +152,13 @@ Each sentence became a 300-dimensional dense vector representation an this in tu
 
 ---
 
-# Step 6 — Train-Test Split
+# Step 6: Train-Test Split
 
 The labeled dataset was split into 80% training data and 20% testing data to ensure unbiased model evaluation.
 
 ---
 
-# Step 7 — Supervised Learning Models
+# Step 7: Supervised Learning Models
 
 Several supervised learning algorithms were trained and evaluated.
 
@@ -171,7 +171,7 @@ Several supervised learning algorithms were trained and evaluated.
 
 ---
 
-# Step 8 — Model Evaluation
+# Step 8: Model Evaluation
 
 Models were evaluated using:
 
@@ -204,7 +204,7 @@ This suggests that linear SVMs are highly effective for metaphor classification 
 
 ---
 
-# Step 9 — Unlabeled Data Processing
+# Step 9: Unlabeled Data Processing
 
 The unlabeled dataset contained 14,994 literary excerpts. To make the data useful for SSL, HPSM and LPSM markers were automatically generated. Concepts were extracted using:
   * dependency parsing
@@ -213,7 +213,7 @@ The unlabeled dataset contained 14,994 literary excerpts. To make the data usefu
 
 ---
 
-# Step 10 — Concept Extraction Strategy
+# Step 10: Concept Extraction Strategy
 
 Several NLP strategies were used to identify metaphorical relationships:
 
@@ -227,7 +227,7 @@ These linguistic combinations help capture figurative semantic relationships.
 
 ---
 
-# Step 11 — Semantic Dissimilarity Detection
+# Step 11: Semantic Dissimilarity Detection
 
 Cosine similarity was used to identify semantically distant word pairs.
 
@@ -235,7 +235,7 @@ Low similarity scores often indicate metaphorical relationships because metaphor
 
 ---
 
-# Step 12 — Semi-Supervised Learning (SSL)
+# Step 12: Semi-Supervised Learning (SSL)
 
 The project implemented pseudo-labeling for SSL.
 

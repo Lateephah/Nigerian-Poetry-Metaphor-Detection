@@ -127,8 +127,8 @@ Several supervised learning algorithms were trained and evaluated. The models us
 
 Models were evaluated using accuracy, precision, recall, F1-score and Confusion Matrix. 
 ![Decision Tree Confusion Matrix](images/DT_matrix.PNG)
-![Logistic Regression Confusion Matrix](images/LR_matrix.PNG)
-![Support Vector Machine Confusion Matrix](images/SVM_matrix.PNG)
+![Logistic Regression Confusion Matrix](images/LR_matrix.png)
+![Support Vector Machine Confusion Matrix](images/SVM_matrix.png)
 ![KNN Confusion Matrix](images/KNN_matrix.PNG)
 
 ## Supervised Learning Results

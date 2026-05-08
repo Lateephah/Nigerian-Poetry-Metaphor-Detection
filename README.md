@@ -125,13 +125,12 @@ Several supervised learning algorithms were trained and evaluated. The models us
 
 # Step 8: Model Evaluation
 
-Models were evaluated using:
+Models were evaluated using accuracy, precision, recall, F1-score and Confusion Matrix. 
+![Decision Tree Result](images/DT_result.PNG)
+![Logistic Regression Result](images/LR_result.PNG)
+![Support Vector Machine Result](images/svm_result.PNG)
+![KNN Result](images/KNN_result.PNG)
 
-* Accuracy
-* Precision
-* Recall
-* F1-score
-* Confusion Matrix
 
 ---
 

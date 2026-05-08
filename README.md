@@ -52,14 +52,14 @@ The project uses:
 
 * Metaphor - 255
 * Non-metaphor - 254
-
+  
 The dataset is balanced, which helps reduce model bias during training.
 
 ---
 
 # Project Workflow
 
-# Step 1: mport Libraries
+# Step 1: Import Libraries
 
 The project begins by importing NLP, machine learning, and visualization libraries such as:
 
@@ -105,12 +105,7 @@ A custom preprocessing pipeline was created to:
 * Remove punctuation
 * Remove extra whitespaces
 * Lemmatize words
-
-Example:
-
-| Original Text                             | Preprocessed Text                      |
-| ----------------------------------------- | -------------------------------------- |
-| "We shall not be visited by the vulture." | "we shall not be visit by the vulture" |
+![Labelled processed Head](images/labelled_preprocessed_head.PNG)
 
 This preprocessing helps standardize textual data before vectorization.
 

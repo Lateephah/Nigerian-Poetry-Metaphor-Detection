@@ -165,12 +165,10 @@ The higher number of False Negatives suggests that KNN occasionally failed to de
 
 The following table summarizes the performance of all supervised learning models evaluated in this study. SVM and Logistic Regression achieved the strongest overall results, indicating superior generalization and classification capability for metaphor detection tasks.
 
-## Best Performing Model
-
-The **Support Vector Machine (SVM)** achieved the highest performance with:
+Hence, **Support Vector Machine (SVM)** is  the Best Performing Model as it achieved the highest performance with:
 
 * 96% accuracy
-* strong precision and recall
+* a strong precision and recall
 * balanced classification performance
 
 This suggests that linear SVMs are highly effective for metaphor classification using semantic embeddings.
@@ -183,6 +181,8 @@ The unlabeled dataset contained 14,994 literary excerpts. To make the data usefu
   * dependency parsing
   * noun phrase extraction
   * metaphorical pair detection
+    
+![Unlabelled Head](images/unlabelled_head.PNG)
 
 ---
 

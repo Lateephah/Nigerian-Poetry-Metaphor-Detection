@@ -174,9 +174,9 @@ Hence, **Support Vector Machine (SVM)** is  the Best Performing Model as it achi
 This suggests that linear SVMs are highly effective for metaphor classification using semantic embeddings.
 
 ---
-## Step 9 — Processing the Unlabeled Dataset
+## Step 9: Processing the Unlabeled Dataset
 
-To extend the learning capability of the system beyond the small labeled dataset, an additional **14,994 unlabeled literary excerpts** were introduced into the pipeline. Since these records did not contain manually annotated semantic mappings or metaphor labels, a feature augmentation strategy was designed to automatically enrich the dataset before semi-supervised learning.
+To extend the learning capability of the system beyond the small labeled dataset, an additional **14,994 unlabeled literary excerpts** were introduced into the pipeline. 
 
 ![Unlabelled Dataset Head](images/Unlabelled_head.PNG)
 
@@ -184,7 +184,7 @@ The figure above shows a preview of the raw unlabeled dataset before preprocessi
 
 ---
 
-# Step 10 — Automatic Feature Augmentation for Unlabeled Data
+# Step 10: Automatic Feature Augmentation for Unlabeled Data
 
 A rule-based and NLP-driven augmentation pipeline was developed to automatically construct semantic features for the unlabeled dataset.
 
@@ -196,17 +196,13 @@ The workflow included:
 4. Identifying metaphorical phrase relationships
 5. Mapping extracted entities into concept representations
 
-This process transformed raw literary text into a structured representation suitable for machine learning.
+![Unlabelled Preprocessed Dataset Head](images/Unlabelled_preprocessed_head.PNG)
+
+The figure above shows a preview of the raw unlabeled dataset after preprocessing and feature augmentation. This process transformed raw literary text into a structured representation suitable for machine learning.
 
 The architectural workflow below illustrates the complete augmentation pipeline used in the project.
 
-### Suggested Image Placement
-
-```md
 ![Architectural Design of the System](images/system_architecture.png)
-```
-
-### Image Explanation
 
 The architectural design above illustrates the complete feature extraction and augmentation workflow used for processing unlabeled literary excerpts. The system first searches for explicit comparison markers such as “like” and “as” to generate semantic mappings. Additional NLP techniques including noun phrase extraction, dependency parsing, cosine similarity analysis, and semantic pair selection were then used to augment the Concepts column. This workflow enabled the unlabeled dataset to acquire structured semantic features comparable to the manually labeled dataset.
 
@@ -234,7 +230,7 @@ Such expressions contain unusual semantic relationships that help distinguish me
 
 ---
 
-# Step 12 — Semantic Similarity Analysis
+# Step 12: Semantic Similarity Analysis
 
 After extracting linguistic pairs, cosine similarity was calculated between their embedding vectors.
 
@@ -265,7 +261,7 @@ The figure above demonstrates the feature extraction and augmentation process pe
 
 ---
 
-# Step 13 — Preprocessing the Augmented Unlabeled Dataset
+# Step 13: Preprocessing the Augmented Unlabeled Dataset
 
 After augmentation, the unlabeled dataset underwent the same preprocessing pipeline applied to the labeled dataset.
 
@@ -291,7 +287,7 @@ The figure above shows the unlabeled dataset after preprocessing and semantic fe
 
 ---
 
-# Step 14 — Semi-Supervised Learning (SSL)
+# Step 14: Semi-Supervised Learning (SSL)
 
 Once the unlabeled dataset had been enriched and vectorized, semi-supervised learning was implemented using a pseudo-labeling strategy.
 
@@ -316,11 +312,11 @@ For example:
 * Logistic Regression → probability threshold
 * SVM → decision function threshold
 
-### Phase 4 — Dataset Expansion
+### Phase 4: Dataset Expansion
 
 High-confidence pseudo-labeled samples were added back into the labeled training set.
 
-### Phase 5 — Iterative Retraining
+### Phase 5: Iterative Retraining
 
 The model was retrained repeatedly using the expanded dataset until no additional confident predictions remained.
 

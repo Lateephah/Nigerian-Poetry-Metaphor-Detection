@@ -174,53 +174,172 @@ Hence, **Support Vector Machine (SVM)** is  the Best Performing Model as it achi
 This suggests that linear SVMs are highly effective for metaphor classification using semantic embeddings.
 
 ---
+## Step 9 — Processing the Unlabeled Dataset
 
-# Step 9: Unlabeled Data Processing
+To extend the learning capability of the system beyond the small labeled dataset, an additional **14,994 unlabeled literary excerpts** were introduced into the pipeline. Since these records did not contain manually annotated semantic mappings or metaphor labels, a feature augmentation strategy was designed to automatically enrich the dataset before semi-supervised learning.
 
-The unlabeled dataset contained 14,994 literary excerpts. To make the data useful for SSL, HPSM and LPSM markers were automatically generated. Concepts were extracted using:
-  * dependency parsing
-  * noun phrase extraction
-  * metaphorical pair detection
-    
-![Unlabelled Head](images/Unlabelled_head.PNG)
+The unlabeled dataset initially contained only raw literary excerpts. Therefore, the system automatically generated additional linguistic features such as:
+
+* HPSM mappings
+* LPSM mappings
+* semantic concepts
+* metaphor-related phrase pairs
+
+This enrichment process allowed the unlabeled data to become structurally similar to the labeled dataset used during supervised learning.
+
+### Suggested Image Placement
+
+```md
+![Unlabelled Dataset Head](images/unlabelled_head.png)
+```
+
+### Image Explanation
+
+The figure above shows a preview of the raw unlabeled dataset before preprocessing and feature augmentation. At this stage, the dataset mainly contains literary excerpts without semantic mappings or metaphor annotations, making additional NLP-based feature extraction necessary before semi-supervised learning could be applied.
 
 ---
 
-# Step 10: Concept Extraction Strategy
+# Step 10 — Automatic Feature Augmentation for Unlabeled Data
 
-Several NLP strategies were used to identify metaphorical relationships:
+A rule-based and NLP-driven augmentation pipeline was developed to automatically construct semantic features for the unlabeled dataset.
 
-## Extracted Pair Types
+The workflow included:
+
+1. Detecting comparison markers such as **“like”** and **“as”**
+2. Generating placeholder HPSM and LPSM mappings
+3. Extracting semantic concepts from excerpts
+4. Identifying metaphorical phrase relationships
+5. Mapping extracted entities into concept representations
+
+This process transformed raw literary text into a structured representation suitable for machine learning.
+
+The architectural workflow below illustrates the complete augmentation pipeline used in the project.
+
+### Suggested Image Placement
+
+```md
+![Architectural Design of the System](images/system_architecture.png)
+```
+
+### Image Explanation
+
+The architectural design above illustrates the complete feature extraction and augmentation workflow used for processing unlabeled literary excerpts. The system first searches for explicit comparison markers such as “like” and “as” to generate semantic mappings. Additional NLP techniques including noun phrase extraction, dependency parsing, cosine similarity analysis, and semantic pair selection were then used to augment the Concepts column. This workflow enabled the unlabeled dataset to acquire structured semantic features comparable to the manually labeled dataset.
+
+---
+
+# Step 11 — Concept Extraction Strategy
+
+To improve metaphor detection performance, the system extracted multiple linguistic relationships from each excerpt using spaCy’s dependency parser and part-of-speech tagging capabilities.
+
+The following semantic pair structures were extracted:
 
 * Noun–Noun pairs
 * Adjective–Noun pairs
 * Adverb–Adjective pairs
 
-These linguistic combinations help capture figurative semantic relationships.
+These combinations are particularly important in metaphorical language because metaphors often connect semantically distant concepts together.
+
+For example:
+
+* *mocking face*
+* *panting gun*
+* *filthy feet*
+
+Such expressions contain unusual semantic relationships that help distinguish metaphorical text from literal language.
 
 ---
 
-# Step 11: Semantic Dissimilarity Detection
+# Step 12 — Semantic Similarity Analysis
 
-Cosine similarity was used to identify semantically distant word pairs.
+After extracting linguistic pairs, cosine similarity was calculated between their embedding vectors.
 
-Low similarity scores often indicate metaphorical relationships because metaphorical terms tend to connect unrelated semantic domains. Hence, this became a key feature engineering step in the project.
+```python
+cosine_similarity(vec1, vec2)
+```
+
+The purpose of this step was to measure semantic distance between paired words.
+
+### Why This Matters
+
+Metaphorical expressions frequently combine words from unrelated semantic domains. Therefore:
+
+* **Lower cosine similarity** → higher semantic dissimilarity
+* Higher semantic dissimilarity → stronger metaphorical potential
+
+The system selected pairs with high semantic dissimilarity as candidate metaphor concepts for feature augmentation.
+
+### Suggested Image Placement
+
+```md
+![Feature Extraction and Augmentation for Unlabelled Dataset](images/feature_augmentation.png)
+```
+
+### Image Explanation
+
+The figure above demonstrates the feature extraction and augmentation process performed on the unlabeled dataset. Semantic relationships were extracted from literary excerpts using dependency parsing and linguistic pair detection. Cosine similarity analysis was then applied to identify semantically distant word pairs, which are strong indicators of metaphorical language. The extracted concepts were subsequently used to enrich the unlabeled dataset for semi-supervised learning.
 
 ---
 
-# Step 12: Semi-Supervised Learning (SSL)
+# Step 13 — Preprocessing the Augmented Unlabeled Dataset
 
-The project implemented pseudo-labeling for SSL.
+After augmentation, the unlabeled dataset underwent the same preprocessing pipeline applied to the labeled dataset.
 
-## SSL Process
+The preprocessing stages included:
 
-1. Train initial model on small labeled subset
-2. Predict labels for unlabeled data
-3. Select high-confidence predictions
-4. Add confident predictions to training set
-5. Retrain model iteratively
+* tokenization
+* lemmatization
+* lowercasing
+* punctuation removal
+* whitespace normalization
 
-This process allows the model to learn from unlabeled literary data.
+This ensured consistency between both datasets before vector generation and model training.
+
+### Suggested Image Placement
+
+```md
+![Preprocessed Unlabelled Dataset](images/unlabelled_preprocessed_head.png)
+```
+
+### Image Explanation
+
+The figure above shows the unlabeled dataset after preprocessing and semantic feature augmentation. Newly generated columns such as HPSM, LPSM, and Concepts were cleaned, standardized, and transformed into machine-readable representations. This preprocessing stage ensured that the unlabeled data matched the structure and format of the labeled training dataset.
+
+---
+
+# Step 14 — Semi-Supervised Learning (SSL)
+
+Once the unlabeled dataset had been enriched and vectorized, semi-supervised learning was implemented using a pseudo-labeling strategy.
+
+Unlike supervised learning, SSL does not rely entirely on manually labeled data. Instead, the model gradually learns from unlabeled samples by assigning predicted labels with high confidence.
+
+## SSL Workflow
+
+### Phase 1 — Initial Training
+
+A small subset of labeled training data was used to train an initial classifier.
+
+### Phase 2 — Pseudo-Label Prediction
+
+The trained model predicted labels for the unlabeled dataset.
+
+### Phase 3 — Confidence Filtering
+
+Only predictions above a confidence threshold were selected.
+
+For example:
+
+* Logistic Regression → probability threshold
+* SVM → decision function threshold
+
+### Phase 4 — Dataset Expansion
+
+High-confidence pseudo-labeled samples were added back into the labeled training set.
+
+### Phase 5 — Iterative Retraining
+
+The model was retrained repeatedly using the expanded dataset until no additional confident predictions remained.
+
+This iterative learning process allowed the model to leverage thousands of unlabeled literary excerpts without requiring manual annotation.
 
 ---
 
@@ -235,110 +354,109 @@ This process allows the model to learn from unlabeled literary data.
 
 ---
 
-# Key Findings
+# Interpretation of SSL Results
 
-## 1. Supervised Learning Outperformed SSL
+The SSL experiments demonstrated that unlabeled literary data can significantly improve metaphor detection performance when properly augmented with semantic features.
 
-The fully supervised SVM model achieved the best overall performance.
+Among all SSL models:
 
-Reason:
+* **Logistic Regression achieved the best SSL performance (93%)**
+* KNN maintained stable performance
+* SVM performance decreased compared to fully supervised learning
+* Decision Tree struggled with generalization during iterative pseudo-labeling
 
-* High-quality labeled data
-* Balanced dataset
-* Strong semantic embeddings
+These results suggest that linear probabilistic models adapt more effectively to pseudo-labeled semantic embeddings than rigid decision-boundary models.
 
 ---
 
-## 2. SSL Still Performed Strongly
+# Key Findings
 
-The SSL Logistic Regression model achieved:
+## 1. Supervised Learning Achieved the Highest Overall Accuracy
+
+The supervised SVM model achieved the best performance overall with:
+
+* 96% accuracy
+* strong precision and recall balance
+* minimal classification error
+
+This highlights the importance of high-quality labeled data in metaphor detection tasks.
+
+---
+
+## 2. Semi-Supervised Learning Still Performed Strongly
+
+Despite relying heavily on unlabeled data, SSL Logistic Regression achieved:
 
 * 93% accuracy
 
-This demonstrates that unlabeled literary data can significantly improve performance when labeled data is limited.
+This demonstrates that pseudo-labeling combined with semantic feature augmentation can effectively reduce dependence on manual annotation.
 
 ---
 
 ## 3. Semantic Embeddings Were Highly Effective
 
-spaCy’s pretrained embeddings successfully captured:
+The pretrained spaCy embeddings successfully captured:
 
-* contextual meaning
-* semantic relationships
-* metaphorical patterns
+* contextual semantics
+* figurative relationships
+* semantic dissimilarity patterns
 
-without requiring deep neural networks.
+This enabled strong classification performance without requiring transformer-based deep learning models.
 
 ---
 
 # Challenges Encountered
 
-## Convergence Warnings
+## Logistic Regression Convergence Warnings
 
-Logistic Regression produced convergence warnings during SSL training.
+During SSL training, Logistic Regression occasionally produced convergence warnings because of:
 
-Possible improvements would include feature scaling, increasing `max_iter` or dimensionality reduction
+* increasing training size
+* high-dimensional embeddings
+* iterative retraining
+
+Possible solutions include:
+
+* feature scaling
+* increasing `max_iter`
+* dimensionality reduction techniques such as PCA
 
 ---
 
-## Metaphor Complexity
+## Complexity of Figurative Language
 
-Metaphorical language is highly context-dependent, making some expressions difficult to classify accurately.
+Metaphorical expressions are highly context-dependent and often ambiguous. Some literary excerpts contained subtle figurative patterns that were difficult to distinguish from literal language, particularly when semantic similarities between paired concepts were weak.
 
 ---
 
 # Future Improvements
 
-Possible future enhancements include:
+Future enhancements could include:
 
-* Transformer models (BERT, RoBERTa)
-* Contextual embeddings
-* Attention mechanisms
-* Deep learning architectures
-* Larger annotated datasets
-* Advanced semantic similarity techniques
-
----
-# Example Results
-
-## Supervised SVM Performance
-
-```text
-Accuracy: 96%
-Precision: 96%
-Recall: 96%
-F1-score: 96%
-```
-
-## SSL Logistic Regression Performance
-
-```text
-Accuracy: 93%
-Precision: 93%
-Recall: 93%
-F1-score: 93%
-```
+* Transformer architectures (BERT, RoBERTa)
+* Contextual embedding models
+* Attention-based NLP systems
+* Larger annotated metaphor corpora
+* Advanced semantic similarity learning
+* Hybrid deep learning and linguistic rule systems
 
 ---
 
 # Conclusion
 
-This project demonstrates that machine learning and NLP techniques can effectively detect metaphorical language in literary text.
+This project demonstrates how Natural Language Processing and machine learning techniques can effectively detect metaphorical language in literary text.
 
-The combination of:
+The integration of:
 
 * semantic embeddings
-* feature engineering
-* linguistic relationship extraction
+* linguistic feature engineering
+* concept augmentation
+* semantic similarity analysis
 * semi-supervised learning
 
-resulted in highly accurate metaphor classification models.
+enabled the development of highly accurate metaphor detection models.
 
-The study also highlights the importance of unlabeled data in NLP tasks where annotated datasets are limited.
+The study further highlights how unlabeled literary data can be transformed into valuable training information through NLP-driven augmentation techniques, reducing dependence on expensive manual annotation processes.
 
----
-
-# Author
-Latifah Usaini Bashir
 
 

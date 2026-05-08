@@ -129,19 +129,27 @@ Models were evaluated using accuracy, precision, recall, F1-score and Confusion 
 ## Supervised Learning Results
 ![Decision Tree Confusion Matrix](images/DT_matrix.PNG)
 
-The Decision Tree model produced 43 true positives (TP), 10 false positives (FP), 5 false negatives (FN), and 44 true negatives (TN). This indicates that while the model correctly classified a majority of positive and negative cases, it struggled with precision due to a relatively higher number of false positives compared to the other models. The balance between TP and TN shows decent overall performance, but the misclassifications suggest room for improvement in handling borderline cases.
+The Decision Tree classifier achieved an accuracy of 85% on the test dataset. From the confusion matrix, the model correctly identified 43 metaphorical instances (True Positives) and 44 non-metaphorical instances (True Negatives). However, the model produced 10 False Positives, where literal expressions were incorrectly classified as metaphors, and 5 False Negatives, where actual metaphors were missed.
+
+This result suggests that while the Decision Tree model was able to capture important decision boundaries within the semantic embedding space, it struggled with generalization compared to the other models. The relatively higher number of False Positives indicates that the model occasionally overfitted to certain semantic patterns, causing it to incorrectly label some literal expressions as metaphorical.
 
 ![Logistic Regression Confusion Matrix](images/LR_matrix.png)
 
-The Logistic Regression model achieved 50 TP, 3 FP, 2 FN, and 47 TN. This reflects strong predictive accuracy, with very few misclassifications. The low false positive and false negative counts highlight the model’s reliability in distinguishing between classes. Logistic Regression demonstrates excellent precision and recall here, making it one of the most effective models in this comparison.
+The Logistic Regression classifier demonstrated strong predictive performance with an overall accuracy of 95%. The confusion matrix shows that the model correctly classified 50 metaphorical expressions (True Positives) and 47 non-metaphorical expressions (True Negatives). Only 3 False Positives and 2 False Negatives were recorded.
+
+These results indicate that Logistic Regression was highly effective at separating metaphorical and non-metaphorical language using the generated semantic embeddings. The low number of classification errors demonstrates that the model generalized well and maintained balanced precision and recall across both classes. This performance highlights the suitability of linear models for NLP classification tasks involving dense vector representations.
 
 ![Support Vector Machine Confusion Matrix](images/SVM_matrix.png)
 
-The Support Vector Machine model delivered 50 TP, 3 FP, 1 FN, and 48 TN. This is the most balanced and accurate performance among the models, with the lowest false negative count. The SVM’s ability to maximize the margin between classes clearly contributed to its superior classification results. Its high TP and TN values, combined with minimal errors, make it the standout performer in this evaluation.
+The Support Vector Machine (SVM) classifier achieved the best overall performance among all supervised learning models, reaching an accuracy of 96%. According to the confusion matrix, the model correctly predicted 50 metaphorical instances (True Positives) and 48 non-metaphorical instances (True Negatives). The classifier generated only 3 False Positives and 1 False Negative, indicating exceptionally strong classification capability.
+
+The low error rate demonstrates the effectiveness of SVM in handling high-dimensional semantic embedding data. Its ability to maximize class separation allowed it to distinguish metaphorical language patterns more accurately than the other algorithms. The near-perfect balance between precision and recall confirms that the SVM model provided the most reliable and consistent metaphor detection performance in this study.
 
 ![KNN Confusion Matrix](images/KNN_matrix.PNG)
 
-The KNN model recorded 49 TP, 4 FP, 7 FN, and 42 TN. While it performed reasonably well, the higher false negative count compared to other models indicates that KNN struggled more with correctly identifying positive cases. This could be due to sensitivity to the choice of neighbors or data distribution. Despite this, KNN still maintained a solid number of correct classifications overall, though it lags behind Logistic Regression and SVM in precision and recall.
+The K-Nearest Neighbors (KNN) classifier achieved an accuracy of 89% on the supervised learning task. The confusion matrix reveals that the model correctly identified 49 metaphorical expressions (True Positives) and 42 non-metaphorical expressions (True Negatives). However, the model recorded 4 False Positives and 7 False Negatives.
+
+The higher number of False Negatives suggests that KNN occasionally failed to detect certain metaphorical expressions, likely due to similarities between metaphorical and literal semantic representations in the vector space. Despite this limitation, the model still performed competitively and demonstrated that distance-based learning methods can effectively classify metaphorical language when supported by high-quality semantic embeddings.
 
 ![Decision Tree Result](images/DT_result.PNG)
 ![Logistic Regression Result](images/LR_result.PNG)

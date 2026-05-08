@@ -126,12 +126,23 @@ Several supervised learning algorithms were trained and evaluated. The models us
 # Step 8: Model Evaluation
 
 Models were evaluated using accuracy, precision, recall, F1-score and Confusion Matrix. 
+## Supervised Learning Results
 ![Decision Tree Confusion Matrix](images/DT_matrix.PNG)
+
+The Decision Tree model produced 43 true positives (TP), 10 false positives (FP), 5 false negatives (FN), and 44 true negatives (TN). This indicates that while the model correctly classified a majority of positive and negative cases, it struggled with precision due to a relatively higher number of false positives compared to the other models. The balance between TP and TN shows decent overall performance, but the misclassifications suggest room for improvement in handling borderline cases.
+
 ![Logistic Regression Confusion Matrix](images/LR_matrix.png)
+
+The Logistic Regression model achieved 50 TP, 3 FP, 2 FN, and 47 TN. This reflects strong predictive accuracy, with very few misclassifications. The low false positive and false negative counts highlight the model’s reliability in distinguishing between classes. Logistic Regression demonstrates excellent precision and recall here, making it one of the most effective models in this comparison.
+
 ![Support Vector Machine Confusion Matrix](images/SVM_matrix.png)
+
+The Support Vector Machine model delivered 50 TP, 3 FP, 1 FN, and 48 TN. This is the most balanced and accurate performance among the models, with the lowest false negative count. The SVM’s ability to maximize the margin between classes clearly contributed to its superior classification results. Its high TP and TN values, combined with minimal errors, make it the standout performer in this evaluation.
+
 ![KNN Confusion Matrix](images/KNN_matrix.PNG)
 
-## Supervised Learning Results
+The KNN model recorded 49 TP, 4 FP, 7 FN, and 42 TN. While it performed reasonably well, the higher false negative count compared to other models indicates that KNN struggled more with correctly identifying positive cases. This could be due to sensitivity to the choice of neighbors or data distribution. Despite this, KNN still maintained a solid number of correct classifications overall, though it lags behind Logistic Regression and SVM in precision and recall.
+
 ![Decision Tree Result](images/DT_result.PNG)
 ![Logistic Regression Result](images/LR_result.PNG)
 ![Support Vector Machine Result](images/SVM_result.PNG)

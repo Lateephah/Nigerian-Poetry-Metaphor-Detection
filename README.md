@@ -61,53 +61,21 @@ The dataset is balanced, which helps reduce model bias during training.
 
 # Step 1: Import Libraries
 
-The project begins by importing NLP, machine learning, and visualization libraries such as:
-
-* NumPy
-* Pandas
-* spaCy
-* Scikit-learn
-* Seaborn
-* Matplotlib
-
-These libraries were used for:
-
-* Text preprocessing
-* Vectorization
-* Model training
-* Evaluation
-* Visualization
+The project begins by importing NLP, machine learning, and visualization libraries such as NumPy, Pandas, spaCy, Scikit-learn, Seaborn and Matplotlib which was used for Text preprocessing, Vectorization, Model training, Evaluation and Visualization
 
 ---
 
 # Step 2: Load spaCy Language Model
 
-The `en_core_web_lg` spaCy model was downloaded and loaded.
-
-This model provides:
-
-* Tokenization
-* Lemmatization
-* Part-of-speech tagging
-* Dependency parsing
-* 300-dimensional word vectors
-
+The `en_core_web_lg` spaCy model was downloaded and loaded and this model provides functions like Tokenization, Lemmatization, Part-of-speech tagging, Dependency parsing and 300-dimensional word vectors
 These embeddings became the foundation for semantic understanding in the project.
 
 ---
 
 # Step 3: Text Preprocessing
 
-A custom preprocessing pipeline was created to:
-
-* Tokenize text
-* Convert words to lowercase
-* Remove punctuation
-* Remove extra whitespaces
-* Lemmatize words
+A custom preprocessing pipeline was created to tokenize text, Convert words to lowercase, remove punctuation, remove extra whitespaces and lemmatization of words. This preprocessing helps standardize textual data before vectorization.
 ![Labelled processed Head](images/labelled_preprocessed_head.PNG)
-
-This preprocessing helps standardize textual data before vectorization.
 
 ---
 
@@ -126,13 +94,7 @@ After preprocessing, all features were concatenated into a single feature column
 Concatenated_Column = Preprocessed_Excerpt + Preprocessed_HPSM + Preprocessed_LPSM + Preprocessed_Concepts
 ```
 
-This allowed the model to learn from:
-
-* contextual meaning
-* semantic mappings
-* extracted metaphor concepts
-
-instead of relying only on raw text.
+This allowed the model to learn from contextual meaning, semantic mappings and extracted metaphor concepts instead of relying only on raw text.
 
 ---
 
@@ -140,11 +102,7 @@ instead of relying only on raw text.
 
 Each concatenated text was transformed into a numerical vector using spaCy embeddings:
 
-Each sentence became a 300-dimensional dense vector representation an this in turn helped captured the:
-
-* semantic similarity
-* contextual relationships
-* metaphorical meaning
+Each sentence became a 300-dimensional dense vector representation an this in turn helped captured the semantic similarity, the contextual relationships and metaphorical meaning from the exercept.
 
 ---
 
@@ -156,9 +114,7 @@ The labeled dataset was split into 80% training data and 20% testing data to ens
 
 # Step 7: Supervised Learning Models
 
-Several supervised learning algorithms were trained and evaluated.
-
-## Models Used
+Several supervised learning algorithms were trained and evaluated. The models used includes:
 
 * K-Nearest Neighbors (KNN)
 * Support Vector Machine (SVM)

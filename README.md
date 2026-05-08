@@ -156,12 +156,14 @@ The higher number of False Negatives suggests that KNN occasionally failed to de
 ![Support Vector Machine Result](images/SVM_result.PNG)
 ![KNN Result](images/KNN_result.PNG)
 
-| Model                        | Accuracy |
-| ---------------------------- | -------- |
-| Support Vector Machine (SVM) | 96%      |
-| Logistic Regression          | 95%      |
-| K-Nearest Neighbors          | 89%      |
-| Decision Tree                | 85%      |
+| **Model** | **Precision (Class 0)** | **Recall (Class 0)** | **F1‑Score (Class 0)** | **Precision (Class 1)** | **Recall (Class 1)** | **F1‑Score (Class 1)** | **Accuracy** | **Macro Avg (F1)** | **Weighted Avg (F1)** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **[Decision Tree](ca://s?q=Decision_Tree_in_supervised_learning)** | 0.90 | 0.81 | 0.85 | 0.81 | 0.90 | 0.85 | 0.85 | 0.85 | 0.85 |
+| **[K‑Nearest Neighbors (KNN)](ca://s?q=KNN_in_supervised_learning)** | 0.88 | 0.92 | 0.90 | 0.91 | 0.86 | 0.88 | 0.89 | 0.89 | 0.89 |
+| **[Logistic Regression](ca://s?q=Logistic_Regression_in_supervised_learning)** | 0.96 | 0.94 | 0.95 | 0.94 | 0.96 | 0.95 | 0.95 | 0.95 | 0.95 |
+| **[Support Vector Machine (SVM)](ca://s?q=SVM_in_supervised_learning)** | 0.98 | 0.94 | 0.96 | 0.94 | 0.98 | 0.96 | 0.96 | 0.96 | 0.96 |
+
+The following table summarizes the performance of all supervised learning models evaluated in this study. SVM and Logistic Regression achieved the strongest overall results, indicating superior generalization and classification capability for metaphor detection tasks.
 
 ## Best Performing Model
 

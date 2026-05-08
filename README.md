@@ -47,7 +47,7 @@ The project uses:
 | Concepts | Extracted metaphor-related concepts           |
 | Label    | Target class (1 = metaphor, 0 = non-metaphor) |
 
-![Labelled Head](images/labelled_head.png)
+![Labelled Head](images/labelled_head.PNG)
 ### Class Distribution
 
 * Metaphor - 255

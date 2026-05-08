@@ -38,7 +38,7 @@ The project uses:
 * **Unlabeled dataset** → 14,994 literary excerpts
 
 ### Labeled Dataset Features
-
+![Labelled Head](images/labelled_head.PNG)
 | Column   | Description                                   |
 | -------- | --------------------------------------------- |
 | Excerpt  | Literary sentence or phrase                   |
@@ -47,7 +47,7 @@ The project uses:
 | Concepts | Extracted metaphor-related concepts           |
 | Label    | Target class (1 = metaphor, 0 = non-metaphor) |
 
-![Labelled Head](images/labelled_head.PNG)
+
 ### Class Distribution
 
 * Metaphor - 255

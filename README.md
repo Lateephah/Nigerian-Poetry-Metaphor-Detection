@@ -178,20 +178,7 @@ This suggests that linear SVMs are highly effective for metaphor classification 
 
 To extend the learning capability of the system beyond the small labeled dataset, an additional **14,994 unlabeled literary excerpts** were introduced into the pipeline. Since these records did not contain manually annotated semantic mappings or metaphor labels, a feature augmentation strategy was designed to automatically enrich the dataset before semi-supervised learning.
 
-The unlabeled dataset initially contained only raw literary excerpts. Therefore, the system automatically generated additional linguistic features such as:
-
-* HPSM mappings
-* LPSM mappings
-* semantic concepts
-* metaphor-related phrase pairs
-
-This enrichment process allowed the unlabeled data to become structurally similar to the labeled dataset used during supervised learning.
-
-### Suggested Image Placement
-
-![Unlabelled Dataset Head](images/unlabelled_head.png)
-
-### Image Explanation
+![Unlabelled Dataset Head](images/Unlabelled_head.PNG)
 
 The figure above shows a preview of the raw unlabeled dataset before preprocessing and feature augmentation. At this stage, the dataset mainly contains literary excerpts without semantic mappings or metaphor annotations, making additional NLP-based feature extraction necessary before semi-supervised learning could be applied.
 

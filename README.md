@@ -29,6 +29,13 @@ This project aims to:
 * Investigate how unlabeled data can contribute to metaphor detection
 
 ---
+# System Architectural Design
+
+The architectural design of the proposed metaphor detection system combines both supervised and semi-supervised learning pipelines into a unified framework. The process begins with preprocessing the labeled dataset, which is then divided into training and testing subsets for model development and evaluation. In parallel, a large unlabeled literary dataset undergoes preprocessing and automatic feature augmentation to generate semantic representations useful for metaphor identification. The self-training semi-supervised learning approach then uses an initial trained model to predict pseudo-labels for the unlabeled data. High-confidence predictions are iteratively added back into the labeled training set, allowing the model to continuously improve its learning capability. Finally, the optimized model is evaluated and deployed as the metaphor classifier.
+
+![Architectural Design of the System](images/system_architecture.png)
+
+---
 
 # Dataset Description
 
@@ -188,43 +195,22 @@ The figure above shows a preview of the raw unlabeled dataset before preprocessi
 
 A rule-based and NLP-driven augmentation pipeline was developed to automatically construct semantic features for the unlabeled dataset.
 
-The workflow included:
+The workflow first searched for explicit comparison markers such as “like” and “as” within each excerpt using regular expression matching. When these markers were detected, placeholder semantic mappings were automatically assigned to the HPSM and LPSM columns to indicate direct comparison relationships. Excerpts without such markers were assigned the placeholder value "Unknown".
 
-1. Detecting comparison markers such as **“like”** and **“as”**
-2. Generating placeholder HPSM and LPSM mappings
-3. Extracting semantic concepts from excerpts
-4. Identifying metaphorical phrase relationships
-5. Mapping extracted entities into concept representations
+![Unlabelled Augumented Dataset Head](images/Unlabelled_head_augmented.PNG)
 
-![Unlabelled Preprocessed Dataset Head](images/Unlabelled_preprocessed_head.PNG)
-
-The figure above shows a preview of the raw unlabeled dataset after preprocessing and feature augmentation. This process transformed raw literary text into a structured representation suitable for machine learning.
-
-The architectural workflow below illustrates the complete augmentation pipeline used in the project.
-
-![Architectural Design of the System](images/system_architecture.png)
-
-The architectural design above illustrates the complete feature extraction and augmentation workflow used for processing unlabeled literary excerpts. The system first searches for explicit comparison markers such as “like” and “as” to generate semantic mappings. Additional NLP techniques including noun phrase extraction, dependency parsing, cosine similarity analysis, and semantic pair selection were then used to augment the Concepts column. This workflow enabled the unlabeled dataset to acquire structured semantic features comparable to the manually labeled dataset.
-
----
-
-# Step 11 — Concept Extraction Strategy
-
-To improve metaphor detection performance, the system extracted multiple linguistic relationships from each excerpt using spaCy’s dependency parser and part-of-speech tagging capabilities.
-
-The following semantic pair structures were extracted:
+Next, additional semantic concepts were extracted from the literary excerpts to improve metaphor detection performance. Using spaCy’s linguistic processing capabilities, the system identified several important semantic relationship structures, including:
 
 * Noun–Noun pairs
 * Adjective–Noun pairs
 * Adverb–Adjective pairs
 
-These combinations are particularly important in metaphorical language because metaphors often connect semantically distant concepts together.
+These linguistic combinations are highly relevant in metaphorical language because metaphors often connect semantically distant concepts together. Examples include:
+- quiver, tree
+- panting gun
+- water, voice
 
-For example:
-
-* *mocking face*
-* *panting gun*
-* *filthy feet*
+![Unlabelled Augumented Dataset2 Head](images/Unlabelled_head_augmented2.PNG)
 
 Such expressions contain unusual semantic relationships that help distinguish metaphorical text from literal language.
 
@@ -238,24 +224,14 @@ After extracting linguistic pairs, cosine similarity was calculated between thei
 cosine_similarity(vec1, vec2)
 ```
 
-The purpose of this step was to measure semantic distance between paired words.
-
-### Why This Matters
-
-Metaphorical expressions frequently combine words from unrelated semantic domains. Therefore:
+The purpose of this step was to measure semantic distance between paired words.This matters because Metaphorical expressions frequently combine words from unrelated semantic domains. Therefore:
 
 * **Lower cosine similarity** → higher semantic dissimilarity
 * Higher semantic dissimilarity → stronger metaphorical potential
 
 The system selected pairs with high semantic dissimilarity as candidate metaphor concepts for feature augmentation.
 
-### Suggested Image Placement
-
-```md
 ![Feature Extraction and Augmentation for Unlabelled Dataset](images/feature_augmentation.png)
-```
-
-### Image Explanation
 
 The figure above demonstrates the feature extraction and augmentation process performed on the unlabeled dataset. Semantic relationships were extracted from literary excerpts using dependency parsing and linguistic pair detection. Cosine similarity analysis was then applied to identify semantically distant word pairs, which are strong indicators of metaphorical language. The extracted concepts were subsequently used to enrich the unlabeled dataset for semi-supervised learning.
 

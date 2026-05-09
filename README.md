@@ -199,63 +199,48 @@ The workflow first searched for explicit comparison markers such as “like” a
 
 ![Unlabelled Augumented Dataset Head](images/Unlabelled_head_augmented.PNG)
 
-Next, additional semantic concepts were extracted from the literary excerpts to improve metaphor detection performance. Using spaCy’s linguistic processing capabilities, the system identified several important semantic relationship structures, including:
+Beyond comparison markers, the system further enriched the unlabeled data by automatically extracting semantic concepts from the excerpts using spaCy’s linguistic processing capabilities. Several important linguistic relationship structures were identified, including:
 
-* Noun–Noun pairs
-* Adjective–Noun pairs
-* Adverb–Adjective pairs
-  
-After extracting linguistic pairs, cosine similarity was calculated between their embedding vectors.
+Noun–Noun pairs
+Adjective–Noun pairs
+Adverb–Adjective pairs
+
+These linguistic combinations are highly relevant in metaphorical language because metaphors often connect semantically distant concepts together.
+
+Examples include:
+
+quiver, tree
+panting gun
+water, voice
+
+To identify potential metaphorical relationships, cosine similarity was calculated between the embedding vectors of extracted word pairs.
 
 ```python
 cosine_similarity(vec1, vec2)
 ```
 
-The purpose of this step was to measure semantic distance between paired words.This matters because Metaphorical expressions frequently combine words from unrelated semantic domains. Therefore:
+This step measured the semantic distance between paired words:
 
-* **Lower cosine similarity** → higher semantic dissimilarity
-* Higher semantic dissimilarity → stronger metaphorical potential
+***Lower cosine similarity*** → higher semantic dissimilarity
+***Higher semantic dissimilarity*** → stronger metaphorical potential
 
-The system selected pairs with high semantic dissimilarity as candidate metaphor concepts for feature augmentation.
+Since metaphorical expressions often combine concepts from unrelated semantic domains, semantically distant pairs became strong candidate features for metaphor detection. The system therefore selected highly dissimilar word pairs and used them to automatically augment the Concepts column of the unlabeled dataset.
 
 ![Feature Extraction and Augmentation for Unlabelled Dataset](images/feature_augmentation.png)
 
-The figure above demonstrates the feature extraction and augmentation process performed on the unlabeled dataset. Semantic relationships were extracted from literary excerpts using dependency parsing and linguistic pair detection. Cosine similarity analysis was then applied to identify semantically distant word pairs, which are strong indicators of metaphorical language. The extracted concepts were subsequently used to enrich the unlabeled dataset for semi-supervised learning.
-
-
-These linguistic combinations are highly relevant in metaphorical language because metaphors often connect semantically distant concepts together. Examples include:
-- quiver, tree
-- panting gun
-- water, voice
-Such expressions contain unusual semantic relationships that help distinguish metaphorical text from literal language.
+The figure above illustrates the complete feature extraction and augmentation workflow applied to the unlabeled dataset. Semantic relationships were extracted from literary excerpts using dependency parsing and linguistic pair detection. Cosine similarity analysis was then applied to identify semantically distant word pairs, which served as strong indicators of metaphorical language. The extracted concepts and generated semantic mappings were subsequently used to enrich the unlabeled dataset for semi-supervised learning.        
 
 ![Unlabelled Augumented Dataset2 Head](images/Unlabelled_head_augmented2.PNG)
 
-The augmented dataset above shows how additional semantic mappings and extracted concepts were automatically generated for previously unlabeled literary excerpts. These engineered features became essential inputs for the semi-supervised learning stage of the project.
+The final augmented dataset above shows how semantic mappings and automatically extracted concepts were integrated into previously unlabeled literary excerpts. These engineered features significantly improved the quality of the unlabeled dataset and provided meaningful semantic representations for the next preprocessing and vectorization stage of the pipeline.
 
 ---
 
 # Step 13: Preprocessing the Augmented Unlabeled Dataset
 
-After augmentation, the unlabeled dataset underwent the same preprocessing pipeline applied to the labeled dataset.
+After augmentation, the unlabeled dataset underwent the same preprocessing pipeline applied to the labeled dataset which included tokenization, lemmatization, lowercasing, removal punctuation and whitespace. This ensured consistency between both datasets before vector generation and model training.
 
-The preprocessing stages included:
-
-* tokenization
-* lemmatization
-* lowercasing
-* punctuation removal
-* whitespace normalization
-
-This ensured consistency between both datasets before vector generation and model training.
-
-### Suggested Image Placement
-
-```md
 ![Preprocessed Unlabelled Dataset](images/unlabelled_preprocessed_head.png)
-```
-
-### Image Explanation
 
 The figure above shows the unlabeled dataset after preprocessing and semantic feature augmentation. Newly generated columns such as HPSM, LPSM, and Concepts were cleaned, standardized, and transformed into machine-readable representations. This preprocessing stage ensured that the unlabeled data matched the structure and format of the labeled training dataset.
 

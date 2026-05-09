@@ -230,7 +230,7 @@ Since metaphorical expressions often combine concepts from unrelated semantic do
 
 The figure above illustrates the complete feature extraction and augmentation workflow applied to the unlabeled dataset. Semantic relationships were extracted from literary excerpts using dependency parsing and linguistic pair detection. Cosine similarity analysis was then applied to identify semantically distant word pairs, which served as strong indicators of metaphorical language. The extracted concepts and generated semantic mappings were subsequently used to enrich the unlabeled dataset for semi-supervised learning.        
 
-![Unlabelled Augumented Dataset2 Head](images/Unlabelled_head_augmented2.PNG)
+![Unlabelled Augumented Dataset3 Head](images/Unlabelled_head_augmented3.PNG)
 
 The final augmented dataset above shows how semantic mappings and automatically extracted concepts were integrated into previously unlabeled literary excerpts. These engineered features significantly improved the quality of the unlabeled dataset and provided meaningful semantic representations for the next preprocessing and vectorization stage of the pipeline.
 
@@ -240,9 +240,20 @@ The final augmented dataset above shows how semantic mappings and automatically 
 
 After augmentation, the unlabeled dataset underwent the same preprocessing pipeline applied to the labeled dataset which included tokenization, lemmatization, lowercasing, removal punctuation and whitespace. This ensured consistency between both datasets before vector generation and model training.
 
-![Preprocessed Unlabelled Dataset](images/unlabelled_preprocessed_head.png)
+![Preprocessed Unlabelled Dataset](images/Unlabelled_preprocessed_head.PNG)
 
-The figure above shows the unlabeled dataset after preprocessing and semantic feature augmentation. Newly generated columns such as HPSM, LPSM, and Concepts were cleaned, standardized, and transformed into machine-readable representations. This preprocessing stage ensured that the unlabeled data matched the structure and format of the labeled training dataset.
+TThe figure above shows the unlabeled dataset after semantic augmentation and preprocessing. Individual feature columns such as Excerpt, HPSM, LPSM, and Concepts were first cleaned and standardized.
+
+During model development, directly using multiple independently vectorized feature columns introduced array conversion and dimensional consistency challenges. To address this, all preprocessed semantic features were merged into a single unified text representation called Concatenated_Column. This combined column contained the preprocessed excerpt together with the generated HPSM, LPSM, and Concepts information.
+
+The unified textual representation was then transformed into dense vector embeddings using spaCy’s pretrained language model:
+
+```python
+df_unlabeled['vector'] = df_unlabeled['Concatenated_Column'].apply(lambda x: nlp(x).vector)
+```
+![Unlabelled Augumented Dataset2 Head](images/Unlabelled_head_augmented2.PNG)
+
+This approach produced a single fixed-length semantic vector representation for each literary excerpt, making the dataset compatible with the machine learning classifiers used in the semi-supervised learning pipeline.
 
 ---
 

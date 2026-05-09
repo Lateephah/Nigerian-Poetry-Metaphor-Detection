@@ -401,7 +401,7 @@ This enabled strong classification performance without requiring transformer-bas
 # Challenges Encountered
 Several challenges encountered in the project included: 
 
-## Logistic Regression Convergence Warnings
+### Logistic Regression Convergence Warnings
 
 During SSL training, Logistic Regression occasionally produced convergence warnings because of:
 
@@ -409,7 +409,7 @@ During SSL training, Logistic Regression occasionally produced convergence warni
 * high-dimensional embeddings
 * iterative retraining
 
-## Feature Representation and Array Conversion Challenges
+### Feature Representation and Array Conversion Challenges
 
 During feature engineering, individual semantic columns such as **Excerpt**, **HPSM**, **LPSM**, and **Concepts** were initially processed separately. However, directly using independently vectorized feature columns introduced array dimensionality and conversion inconsistencies during model training.
 
@@ -423,7 +423,7 @@ This approach ensured:
 
 The solution also helped preserve contextual semantic relationships across all engineered features within a single embedding space.
 
-## Complexity of Figurative Language
+### Complexity of Figurative Language
 
 Metaphorical expressions are highly context-dependent and often ambiguous. Some literary excerpts contained subtle figurative patterns that were difficult to distinguish from literal language, particularly when semantic similarities between paired concepts were weak.
 

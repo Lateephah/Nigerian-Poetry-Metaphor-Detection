@@ -230,7 +230,7 @@ Since metaphorical expressions often combine concepts from unrelated semantic do
 
 The figure above illustrates the complete feature extraction and augmentation workflow applied to the unlabeled dataset. Semantic relationships were extracted from literary excerpts using dependency parsing and linguistic pair detection. Cosine similarity analysis was then applied to identify semantically distant word pairs, which served as strong indicators of metaphorical language. The extracted concepts and generated semantic mappings were subsequently used to enrich the unlabeled dataset for semi-supervised learning.        
 
-![Unlabelled Augumented Dataset3 Head](images/Unlabelled_head_augmented3.PNG)
+![Unlabelled Augumented Dataset2 Head](images/Unlabelled_head_augmented2.PNG)
 
 The final augmented dataset above shows how semantic mappings and automatically extracted concepts were integrated into previously unlabeled literary excerpts. These engineered features significantly improved the quality of the unlabeled dataset and provided meaningful semantic representations for the next preprocessing and vectorization stage of the pipeline.
 

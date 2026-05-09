@@ -265,15 +265,15 @@ Unlike supervised learning, SSL does not rely entirely on manually labeled data.
 
 ## SSL Workflow
 
-### Phase 1 — Initial Training
+### Phase 1: Initial Training
 
 A small subset of labeled training data was used to train an initial classifier.
 
-### Phase 2 — Pseudo-Label Prediction
+### Phase 2: Pseudo-Label Prediction
 
 The trained model predicted labels for the unlabeled dataset.
 
-### Phase 3 — Confidence Filtering
+### Phase 3: Confidence Filtering
 
 Only predictions above a confidence threshold were selected.
 
@@ -295,6 +295,17 @@ This iterative learning process allowed the model to leverage thousands of unlab
 ---
 
 # Semi-Supervised Learning Results
+
+![Decision Tree Confusion Matrix- SSL Approach](images/DT_ssl_matrix.PNG)
+
+![Support Vector Machine Confusion Matrix- SSL Approach](images/SVM_ssl_matrix.png)
+
+![KNN Confusion Matrix- SSL Approach](images/KNN_ssl_matrix.PNG)
+
+![Decision Tree Result- SSL Approach](images/DT_ssl_result.PNG)
+![Support Vector Machine Result- SSL Approach](images/SVM_ssl_result.PNG)
+![KNN Result- SSL Approach](images/KNN_ssl_result.PNG)
+
 
 | Model               | SSL Accuracy |
 | ------------------- | ------------ |

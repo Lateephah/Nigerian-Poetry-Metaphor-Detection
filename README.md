@@ -265,15 +265,15 @@ Unlike supervised learning, SSL does not rely entirely on manually labeled data.
 
 ## SSL Workflow
 
-### Phase 1: Initial Training
+#### Phase 1: Initial Training
 
 A small subset of labeled training data was used to train an initial classifier.
 
-### Phase 2: Pseudo-Label Prediction
+#### Phase 2: Pseudo-Label Prediction
 
 The trained model predicted labels for the unlabeled dataset.
 
-### Phase 3: Confidence Filtering
+#### Phase 3: Confidence Filtering
 
 Only predictions above a confidence threshold were selected.
 
@@ -282,11 +282,11 @@ For example:
 * Logistic Regression → probability threshold
 * SVM → decision function threshold
 
-### Phase 4: Dataset Expansion
+#### Phase 4: Dataset Expansion
 
 High-confidence pseudo-labeled samples were added back into the labeled training set.
 
-### Phase 5: Iterative Retraining
+#### Phase 5: Iterative Retraining
 
 The model was retrained repeatedly using the expanded dataset until no additional confident predictions remained.
 
@@ -310,10 +310,15 @@ The increased misclassification rate suggests that the pseudo-labeled data intro
 
 ![KNN Confusion Matrix- SSL Approach](images/KNN_ssl_Matrix.PNG)
 
-The confusion matrix for the KNN semi-supervised model demonstrates stronger classification performance compared to the Decision Tree model. The classifier correctly predicted 45 metaphorical excerpts (True Positives) and 43 non-metaphorical excerpts (True Negatives) while producing only 4 False Negatives.
+The confusion matrix for the KNN semi-supervised model demonstrates strong classification performance. The classifier correctly predicted 45 metaphorical excerpts (True Positives) and 43 non-metaphorical excerpts (True Negatives) while producing only 4 False Negatives.
 
-Although the model generated 10 False Positives, the lower False Negative rate indicates that KNN was highly effective at identifying metaphorical expressions. This suggests that neighboring semantic embeddings within the vector space preserved meaningful contextual relationships, allowing the model to better recognize figurative language patterns after pseudo-label augmentation.
-The semi-supervised learning experiments demonstrate that pseudo-labeling can effectively leverage large volumes of unlabeled literary data to improve metaphor detection performance, although the effectiveness varied across classifiers.
+Although the model generated 10 False Positives, the low False Negative rate indicates that KNN was highly effective at identifying metaphorical language. This suggests that neighboring semantic embeddings within the vector space preserved meaningful contextual relationships, enabling the classifier to capture figurative language patterns after pseudo-label augmentation.
+
+![Logistic Matrix- SSL Approach](images/LR_ssl_Matrix.PNG)
+
+The confusion matrix for the Logistic Regression semi-supervised model produced the strongest overall SSL performance. The classifier correctly identified 46 metaphorical excerpts (True Positives) and 49 non-metaphorical excerpts (True Negatives) while generating only 4 False Positives and 3 False Negatives.
+
+The low error rates across both classes indicate that Logistic Regression generalized exceptionally well on the augmented semantic feature space. The model effectively leveraged pseudo-labeled data without introducing substantial noise during iterative training. This demonstrates that the semantic embeddings and engineered metaphor features aligned particularly well with the linear decision boundaries learned by Logistic Regression.
 
 ![KNN Result- SSL Approach](images/KNN_ssl_result.PNG)
 
@@ -326,19 +331,25 @@ The Support Vector Machine (SVM) SSL model achieved an accuracy of 80%, with rel
 ![Decision Tree Result- SSL Approach](images/DT_ssl_result.PNG)
 
 Similarly, the Decision Tree SSL model achieved 79% accuracy, producing the weakest overall performance among the evaluated SSL classifiers. Although the model maintained moderate balance between precision and recall, its lower F1-scores indicate difficulty handling the complex contextual relationships associated with metaphorical language.
-Overall, the SSL experiments reveal that unlabeled literary data can significantly enhance metaphor detection when combined with semantic feature engineering and vector embeddings. However, the results also highlight that pseudo-label quality and classifier selection strongly influence SSL effectiveness. While semi-supervised learning improved scalability and reduced dependence on manual annotation, the fully supervised models still achieved the highest overall predictive performance due to the availability of high-quality labeled semantic representations.
+Overall, the SSL experiments reveal that unlabeled literary data can significantly enhance metaphor detection when combined with semantic feature engineering and vector embeddings. 
 
-| **Model** | **Accuracy** | **Precision (Class 0)** | **Recall (Class 0)** | **F1‑Score (Class 0)** | **Precision (Class 1)** | **Recall (Class 1)** | **F1‑Score (Class 1)** | **Macro Avg F1** | **Weighted Avg F1** | **TP** | **FP** | **FN** | **TN** |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **[Decision Tree](ca://s?q=Decision_Tree_in_semi_supervised_learning)** | 0.79 | 0.79 | 0.83 | 0.81 | 0.80 | 0.76 | 0.78 | 0.79 | 0.79 | 37 | 9 | 12 | 44 |
-| **[K‑Nearest Neighbors (KNN)](ca://s?q=KNN_in_semi_supervised_learning)** | 0.86 | 0.91 | 0.81 | 0.86 | 0.82 | 0.92 | 0.87 | 0.86 | 0.86 | 45 | 10 | 4 | 43 |
-| **[Support Vector Machine (SVM)](ca://s?q=SVM_in_semi_supervised_learning)** | 0.80 | 0.82 | 0.79 | 0.81 | 0.78 | 0.82 | 0.80 | 0.80 | 0.80 | 40 | 11 | 9 | 42 |
+![Logistic Result- SSL Approach](images/LR_ssl_result.PNG)
 
----
+Among all SSL models, Logistic Regression achieved the best overall performance, obtaining:
 
-# Interpretation of SSL Results
+- 93% Accuracy
+- 93% Macro Average F1-Score
+93% Weighted Average F1-Score
 
-The SSL experiments demonstrated that unlabeled literary data can significantly improve metaphor detection performance when properly augmented with semantic features.
+The model maintained highly balanced precision and recall across both metaphorical and non-metaphorical classes, indicating strong generalization capability and robust class discrimination. Its low False Positive and False Negative counts further demonstrate that the model effectively utilized the augmented unlabeled dataset without becoming heavily affected by pseudo-label noise.
+
+| **Model** | **Accuracy** | **Precision (0)** | **Recall (0)** | **F1‑Score (0)** | **Precision (1)** | **Recall (1)** | **F1‑Score (1)** | **Macro Avg F1** | **Weighted Avg F1** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **[Decision Tree](ca://s?q=Decision_Tree_in_semi_supervised_learning)** | 0.79 | 0.79 | 0.83 | 0.81 | 0.80 | 0.76 | 0.78 | 0.79 | 0.79 |
+| **[K‑Nearest Neighbors (KNN)](ca://s?q=KNN_in_semi_supervised_learning)** | 0.86 | 0.91 | 0.81 | 0.86 | 0.82 | 0.92 | 0.87 | 0.86 | 0.86 |
+| **[Support Vector Machine (SVM)](ca://s?q=SVM_in_semi_supervised_learning)** | 0.80 | 0.82 | 0.79 | 0.81 | 0.78 | 0.82 | 0.80 | 0.80 | 0.80 |
+| **[Logistic Regression](ca://s?q=Logistic_Regression_in_semi_supervised_learning)** | 0.93 | 0.94 | 0.92 | 0.93 | 0.92 | 0.94 | 0.93 | 0.93 | 0.93 |
+
 
 Among all SSL models:
 
@@ -388,6 +399,7 @@ This enabled strong classification performance without requiring transformer-bas
 ---
 
 # Challenges Encountered
+Several challenges encountered in the project included: 
 
 ## Logistic Regression Convergence Warnings
 
@@ -397,13 +409,19 @@ During SSL training, Logistic Regression occasionally produced convergence warni
 * high-dimensional embeddings
 * iterative retraining
 
-Possible solutions include:
+## Feature Representation and Array Conversion Challenges
 
-* feature scaling
-* increasing `max_iter`
-* dimensionality reduction techniques such as PCA
+During feature engineering, individual semantic columns such as **Excerpt**, **HPSM**, **LPSM**, and **Concepts** were initially processed separately. However, directly using independently vectorized feature columns introduced array dimensionality and conversion inconsistencies during model training.
 
----
+To resolve this issue, all preprocessed semantic features were merged into a unified textual representation called **Concatenated_Column**. The combined column was then transformed into a single dense vector embedding using spaCy’s pretrained language model.
+
+This approach ensured:
+
+* consistent fixed-length vector representations
+* improved compatibility with machine learning classifiers
+* simpler feature management during supervised and semi-supervised learning
+
+The solution also helped preserve contextual semantic relationships across all engineered features within a single embedding space.
 
 ## Complexity of Figurative Language
 
@@ -411,34 +429,54 @@ Metaphorical expressions are highly context-dependent and often ambiguous. Some 
 
 ---
 
-# Future Improvements
+## Future Improvements
 
-Future enhancements could include:
+Several improvements could further enhance the performance and scalability of this metaphor detection system.
 
-* Transformer architectures (BERT, RoBERTa)
-* Contextual embedding models
-* Attention-based NLP systems
-* Larger annotated metaphor corpora
-* Advanced semantic similarity learning
-* Hybrid deep learning and linguistic rule systems
+Future work may involve integrating advanced transformer-based architectures such as BERT and RoBERTa to capture deeper contextual understanding within literary text. Unlike static word embeddings, transformer models are capable of learning context-sensitive semantic representations, which may improve the detection of subtle and complex metaphorical expressions.
+
+Additional enhancements could also include:
+
+* attention-based NLP architectures for improved contextual focus
+* larger annotated metaphor datasets for better generalization
+* advanced semantic similarity learning techniques
+* hybrid systems combining deep learning with linguistic rule-based methods
+* improved pseudo-label selection strategies for semi-supervised learning
+
+During SSL training, Logistic Regression occasionally produced convergence warnings due to increasing training size, high-dimensional vector representations, and iterative retraining during pseudo-labeling. Possible solutions that could improve model stability and training efficiency include:
+
+* feature scaling
+* increasing `max_iter`
+* dimensionality reduction techniques such as PCA
+* optimized vector compression strategies
+* sparse matrix optimization for large embedding representations
+
+Future versions of the project could also explore more efficient feature representation pipelines to reduce computational complexity while maintaining semantic richness.
 
 ---
 
 # Conclusion
 
-This project demonstrates how Natural Language Processing and machine learning techniques can effectively detect metaphorical language in literary text.
+This project demonstrates how Natural Language Processing and machine learning techniques can effectively detect metaphorical language in literary text through both supervised and semi-supervised learning approaches.
 
 The integration of:
 
 * semantic embeddings
 * linguistic feature engineering
 * concept augmentation
-* semantic similarity analysis
+* cosine similarity analysis
+* pseudo-labeling techniques
 * semi-supervised learning
 
-enabled the development of highly accurate metaphor detection models.
+enabled the development of highly accurate metaphor detection models capable of identifying complex figurative relationships within literary excerpts.
 
-The study further highlights how unlabeled literary data can be transformed into valuable training information through NLP-driven augmentation techniques, reducing dependence on expensive manual annotation processes.
+The project further showed how unlabeled literary data can be transformed into meaningful training information through NLP-driven augmentation techniques. By automatically extracting semantic relationships, generating metaphor-related concepts, and constructing enriched feature representations, the system successfully reduced reliance on expensive manual annotation processes.
 
+Experimental results revealed that supervised learning achieved the strongest overall performance, with SVM producing the best classification accuracy. However, the semi-supervised learning approach also delivered strong performance, particularly with Logistic Regression, demonstrating the effectiveness of leveraging unlabeled data in low-resource NLP tasks.
 
+Overall, the study highlights the potential of combining linguistic analysis, semantic similarity modeling, and machine learning to build intelligent systems capable of understanding figurative language in literary texts.
+
+# Author
+Latifah Usaini Bashir
+Data Science and Machine Learning Enthusiast
 

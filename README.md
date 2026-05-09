@@ -298,21 +298,38 @@ This iterative learning process allowed the model to leverage thousands of unlab
 
 ![Decision Tree Confusion Matrix- SSL Approach](images/DT_ssl_Matrix.PNG)
 
+The confusion matrix for the Decision Tree semi-supervised learning model shows that the classifier correctly identified 37 metaphorical excerpts (True Positives) and 44 non-metaphorical excerpts (True Negatives). However, the model also produced 9 False Positives and 12 False Negatives, indicating some difficulty distinguishing subtle metaphorical expressions from literal language.
+
+The relatively higher False Negative count suggests that the Decision Tree model struggled to capture certain complex metaphorical patterns within the unlabeled augmented dataset. This limitation may be due to the model’s tendency to create rigid decision boundaries, making it less effective for handling nuanced semantic relationships commonly found in literary metaphors.
+
 ![Support Vector Machine Confusion Matrix- SSL Approach](images/SVM_ssl_Matrix.PNG)
+
+The confusion matrix for the SSL-based SVM model shows balanced but comparatively weaker performance than its fully supervised counterpart. The model correctly classified 40 metaphorical excerpts (True Positives) and 42 non-metaphorical excerpts (True Negatives), while producing 11 False Positives and 9 False Negatives.
+
+The increased misclassification rate suggests that the pseudo-labeled data introduced some noisy semantic boundaries during iterative training. Since SVM attempts to maximize class separation margins, incorrectly pseudo-labeled samples may have reduced the model’s ability to construct optimal decision boundaries for metaphor classification.
 
 ![KNN Confusion Matrix- SSL Approach](images/KNN_ssl_Matrix.PNG)
 
-![Decision Tree Result- SSL Approach](images/DT_ssl_result.PNG)
-![Support Vector Machine Result- SSL Approach](images/SVM_ssl_result.PNG)
+The confusion matrix for the KNN semi-supervised model demonstrates stronger classification performance compared to the Decision Tree model. The classifier correctly predicted 45 metaphorical excerpts (True Positives) and 43 non-metaphorical excerpts (True Negatives) while producing only 4 False Negatives.
+
+Although the model generated 10 False Positives, the lower False Negative rate indicates that KNN was highly effective at identifying metaphorical expressions. This suggests that neighboring semantic embeddings within the vector space preserved meaningful contextual relationships, allowing the model to better recognize figurative language patterns after pseudo-label augmentation.
+The semi-supervised learning experiments demonstrate that pseudo-labeling can effectively leverage large volumes of unlabeled literary data to improve metaphor detection performance, although the effectiveness varied across classifiers.
+
 ![KNN Result- SSL Approach](images/KNN_ssl_result.PNG)
+Among the SSL models, K-Nearest Neighbors (KNN) achieved the strongest balance between metaphor detection and generalization performance with an accuracy of 86% and an F1-score of 0.87 for metaphorical excerpts (Class 1). Its high recall score of 0.92 indicates that the model successfully captured most metaphorical expressions with relatively few missed detections. This suggests that local semantic similarity structures within the embedding space remained highly informative after augmentation.
 
+![Support Vector Machine Result- SSL Approach](images/SVM_ssl_result.PNG)
+The Support Vector Machine (SVM) SSL model achieved an accuracy of 80%, with relatively balanced precision and recall values across both classes. However, its lower overall performance compared to the supervised SVM model suggests that the pseudo-labeled data may have introduced semantic noise that affected the model’s margin optimization process.
 
-| Model               | SSL Accuracy |
-| ------------------- | ------------ |
-| Logistic Regression | 93%          |
-| KNN                 | 86%          |
-| SVM                 | 80%          |
-| Decision Tree       | 79%          |
+![Decision Tree Result- SSL Approach](images/DT_ssl_result.PNG)
+Similarly, the Decision Tree SSL model achieved 79% accuracy, producing the weakest overall performance among the evaluated SSL classifiers. Although the model maintained moderate balance between precision and recall, its lower F1-scores indicate difficulty handling the complex contextual relationships associated with metaphorical language.
+Overall, the SSL experiments reveal that unlabeled literary data can significantly enhance metaphor detection when combined with semantic feature engineering and vector embeddings. However, the results also highlight that pseudo-label quality and classifier selection strongly influence SSL effectiveness. While semi-supervised learning improved scalability and reduced dependence on manual annotation, the fully supervised models still achieved the highest overall predictive performance due to the availability of high-quality labeled semantic representations.
+
+| **Model** | **Accuracy** | **Precision (Class 0)** | **Recall (Class 0)** | **F1‑Score (Class 0)** | **Precision (Class 1)** | **Recall (Class 1)** | **F1‑Score (Class 1)** | **Macro Avg F1** | **Weighted Avg F1** | **TP** | **FP** | **FN** | **TN** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **[Decision Tree](Decision_Tree_in_semi_supervised_learning)** | 0.79 | 0.79 | 0.83 | 0.81 | 0.80 | 0.76 | 0.78 | 0.79 | 0.79 | 37 | 9 | 12 | 44 |
+| **[K‑Nearest Neighbors (KNN)](KNN_in_semi_supervised_learning)** | 0.86 | 0.91 | 0.81 | 0.86 | 0.82 | 0.92 | 0.87 | 0.86 | 0.86 | 45 | 10 | 4 | 43 |
+| **[Support Vector Machine (SVM)](SVM_in_semi_supervised_learning)** | 0.80 | 0.82 | 0.79 | 0.81 | 0.78 | 0.82 | 0.80 | 0.80 | 0.80 | 40 | 11 | 9 | 42 |
 
 ---
 

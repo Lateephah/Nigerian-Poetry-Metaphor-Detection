@@ -240,7 +240,7 @@ The final augmented dataset above shows how semantic mappings and automatically 
 
 After augmentation, the unlabeled dataset underwent the same preprocessing pipeline applied to the labeled dataset which included tokenization, lemmatization, lowercasing, removal punctuation and whitespace. This ensured consistency between both datasets before vector generation and model training.
 
-![Preprocessed Unlabelled Dataset2](images/Unlabelled_preprocessed_head2.PNG)
+![Preprocessed Unlabelled Dataset2](images/Unlabelled_preprocessed_head2.png)
 
 TThe figure above shows the unlabeled dataset after semantic augmentation and preprocessing. Individual feature columns such as Excerpt, HPSM, LPSM, and Concepts were first cleaned and standardized.
 

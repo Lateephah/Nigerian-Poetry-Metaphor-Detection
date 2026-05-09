@@ -240,7 +240,7 @@ The final augmented dataset above shows how semantic mappings and automatically 
 
 After augmentation, the unlabeled dataset underwent the same preprocessing pipeline applied to the labeled dataset which included tokenization, lemmatization, lowercasing, removal punctuation and whitespace. This ensured consistency between both datasets before vector generation and model training.
 
-![Preprocessed Unlabelled Dataset](images/Unlabelled_preprocessed_head.PNG)
+![Preprocessed Unlabelled Dataset2](images/Unlabelled_preprocessed_head2.PNG)
 
 TThe figure above shows the unlabeled dataset after semantic augmentation and preprocessing. Individual feature columns such as Excerpt, HPSM, LPSM, and Concepts were first cleaned and standardized.
 
@@ -251,7 +251,7 @@ The unified textual representation was then transformed into dense vector embedd
 ```python
 df_unlabeled['vector'] = df_unlabeled['Concatenated_Column'].apply(lambda x: nlp(x).vector)
 ```
-![Unlabelled Augumented Dataset2 Head](images/Unlabelled_head_augmented2.PNG)
+![Preprocessed Unlabelled Dataset](images/Unlabelled_preprocessed_head.PNG)
 
 This approach produced a single fixed-length semantic vector representation for each literary excerpt, making the dataset compatible with the machine learning classifiers used in the semi-supervised learning pipeline.
 

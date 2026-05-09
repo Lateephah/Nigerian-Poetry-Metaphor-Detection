@@ -204,20 +204,7 @@ Next, additional semantic concepts were extracted from the literary excerpts to 
 * Noun–Noun pairs
 * Adjective–Noun pairs
 * Adverb–Adjective pairs
-
-These linguistic combinations are highly relevant in metaphorical language because metaphors often connect semantically distant concepts together. Examples include:
-- quiver, tree
-- panting gun
-- water, voice
-
-![Unlabelled Augumented Dataset2 Head](images/Unlabelled_head_augmented2.PNG)
-
-Such expressions contain unusual semantic relationships that help distinguish metaphorical text from literal language.
-
----
-
-# Step 12: Semantic Similarity Analysis
-
+  
 After extracting linguistic pairs, cosine similarity was calculated between their embedding vectors.
 
 ```python
@@ -234,6 +221,17 @@ The system selected pairs with high semantic dissimilarity as candidate metaphor
 ![Feature Extraction and Augmentation for Unlabelled Dataset](images/feature_augmentation.png)
 
 The figure above demonstrates the feature extraction and augmentation process performed on the unlabeled dataset. Semantic relationships were extracted from literary excerpts using dependency parsing and linguistic pair detection. Cosine similarity analysis was then applied to identify semantically distant word pairs, which are strong indicators of metaphorical language. The extracted concepts were subsequently used to enrich the unlabeled dataset for semi-supervised learning.
+
+
+These linguistic combinations are highly relevant in metaphorical language because metaphors often connect semantically distant concepts together. Examples include:
+- quiver, tree
+- panting gun
+- water, voice
+Such expressions contain unusual semantic relationships that help distinguish metaphorical text from literal language.
+
+![Unlabelled Augumented Dataset2 Head](images/Unlabelled_head_augmented2.PNG)
+
+The augmented dataset above shows how additional semantic mappings and extracted concepts were automatically generated for previously unlabeled literary excerpts. These engineered features became essential inputs for the semi-supervised learning stage of the project.
 
 ---
 

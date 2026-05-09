@@ -296,11 +296,11 @@ This iterative learning process allowed the model to leverage thousands of unlab
 
 # Semi-Supervised Learning Results
 
-![Decision Tree Confusion Matrix- SSL Approach](images/DT_ssl_matrix.PNG)
+![Decision Tree Confusion Matrix- SSL Approach](images/DT_ssl_Matrix.PNG)
 
-![Support Vector Machine Confusion Matrix- SSL Approach](images/SVM_ssl_matrix.png)
+![Support Vector Machine Confusion Matrix- SSL Approach](images/SVM_ssl_Matrix.PNG)
 
-![KNN Confusion Matrix- SSL Approach](images/KNN_ssl_matrix.PNG)
+![KNN Confusion Matrix- SSL Approach](images/KNN_ssl_Matrix.PNG)
 
 ![Decision Tree Result- SSL Approach](images/DT_ssl_result.PNG)
 ![Support Vector Machine Result- SSL Approach](images/SVM_ssl_result.PNG)
